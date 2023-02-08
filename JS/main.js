@@ -27,7 +27,7 @@ let tasaInteres = function() {
     if ((tasaInteres == null) || (tasaInteres.toLowerCase() == 'salir')) {
         raton();
         break;
-    } else if (parseInt(tasaInteres) > 0) {
+    } else if (tasaInteres > 0) {
         arrayParametros.push(tasaInteres);
         periodo();
         break;
