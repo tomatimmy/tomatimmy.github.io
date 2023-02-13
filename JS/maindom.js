@@ -56,6 +56,6 @@ resetButton.addEventListener("click", function() {
   const form = this.closest("form");
   form.reset();
   const divResultado = document.getElementById('resultado');
-  divResultado.innerHTML = "";
+  divResultado.innerHTML = `<p>Carga nuevos valores para calcular de nuevo, nabo.</p>`
 });
 
