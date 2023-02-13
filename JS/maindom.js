@@ -55,5 +55,6 @@ const botonReset = document.querySelector("button[type='reset']");
 resetButton.addEventListener("click", function() {
   const form = this.closest("form");
   form.reset();
+  divResultado.innerHTML = "";
 });
 
