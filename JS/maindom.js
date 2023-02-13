@@ -42,7 +42,7 @@ formulario.addEventListener("submit", (e) => {
     if (calcular.capital !== '' && calcular.interes !== '' && calcular.periodo !== '') {
         divResultado.innerHTML = `<p>Bueno, si me haces caso y no gastas en tonterías como Samu, con $${calcular.capital}
         Samuelines de inversión incial, en ${calcular.periodo} años, a una tasa de interés del ${calcular.interes}%, vas
-        a tener: ${final} Samuelines. Es decir, vas a seguir siendo pobre, pero no tanto. Gracias por participar.</p>`;
+        a tener: $${final} Samuelines. Es decir, vas a seguir siendo pobre, pero no tanto. Gracias por participar.</p>`;
     } else {
         console.log('No pasa nada');
     }
