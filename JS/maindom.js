@@ -50,12 +50,9 @@ formulario.addEventListener("submit", (e) => {
     formulario.reset();
 })
 
-const botonReset = document.querySelector("button[type='reset']");
+const restablecer = document.getElementById('restablecer');
 
-resetButton.addEventListener("click", function() {
-  const form = this.closest("form");
-  form.reset();
-  const divResultado = document.getElementById('resultado');
-  divResultado.innerHTML = `<p>Carga nuevos valores para calcular de nuevo, nabo.</p>`
-});
-
+restablecer.addEventListener("click", () => {
+    const divResultado = document.getElementById('resultado');
+    divResultado.innerHTML = '';
+})
