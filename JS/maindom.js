@@ -9,11 +9,9 @@ class Calculadora {
 
 const formulario = document.getElementById("formulario");
 
-arrayCalcular = []
 
 formulario.addEventListener("submit", (e) => {
 
-    //Evito el comportamiento por default del formulario: 
     e.preventDefault();
 
     const capitalInicial = document.getElementById("capitalInicial");
@@ -21,12 +19,14 @@ formulario.addEventListener("submit", (e) => {
     const periodo = document.getElementById("periodo");
 
     const calcular = new Calculadora(capitalInicial.value, tasaInteres.value, periodo.value);
+    const calcularJSON = JSON.stringify(calcular);
+    localStorage.setItem("Valores", calcularJSON);
+    // Por el workflow de la app, no resulta necesario recuperar el Json, será limpiada al realizar
+    // un nuevo cálculo o al presionar restablecer.
 
-    arrayCalcular.push(calcular)
 
-
-    let andaPallaBobo = function() {    //Le asignamos a las variables los valores ingresados por el usuario
-        let k = parseInt(calcular.capital);     //mediante prompt que fueron pasados desde el Array al Objeto
+    let andaPallaBobo = function() {
+        let k = parseInt(calcular.capital);
         let i = parseInt(calcular.interes);
         let n = parseInt(calcular.periodo);
         return k * Math.pow(1 + i / 100, n);
@@ -36,6 +36,16 @@ formulario.addEventListener("submit", (e) => {
 
     let final = andaPallaBobo();
     final = final.toFixed(2);
+
+    Toastify( {
+        text: "Calculanding...",
+        duration: 3000, 
+        gravity: "top",
+        position: "right", 
+        style: {
+            background: "gray",
+        }
+    }).showToast();
     
     const divResultado = document.getElementById('resultado');
 
@@ -44,7 +54,17 @@ formulario.addEventListener("submit", (e) => {
         Samuelines de inversión incial, en ${calcular.periodo} años, a una tasa de interés del ${calcular.interes}%, vas
         a tener: $${final} Samuelines. Es decir, vas a seguir siendo pobre, pero no tanto. Gracias por participar.</p>`;
     } else {
-        console.log('No pasa nada');
+        divResultado.innerHTML = `<p>Por favor rellená todos los campos para poder realizar el cálculo en forma eficiente.</p>`;
+        Toastify( {
+            text: "TE FALTAN VALORES AMIGO!",
+            duration: 3000, 
+            gravity: "top",
+            position: "right", 
+            style: {
+                background: "gray",
+            }
+        }).showToast();
+        localStorage.clear();
     }
 
     formulario.reset();
@@ -55,4 +75,5 @@ const restablecer = document.getElementById('restablecer');
 restablecer.addEventListener("click", () => {
     const divResultado = document.getElementById('resultado');
     divResultado.innerHTML = '';
+    localStorage.clear();
 })
