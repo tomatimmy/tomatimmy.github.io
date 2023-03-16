@@ -1,3 +1,5 @@
+const formulario = document.getElementById("formulario");
+
 class Calculadora {
     constructor(capital, interes, periodo) {
         this.capital = capital;
@@ -6,8 +8,16 @@ class Calculadora {
     }
 }
 
-
-const formulario = document.getElementById("formulario");
+fetch('opciones.json')
+    .then(response => response.json())
+    .then(data => {
+        const datalist = document.getElementById('opciones');
+        data.forEach(item => {
+          const opcion = document.createElement('option');
+          opcion.text = item.text;
+          datalist.appendChild(opcion);
+        });
+    })
 
 
 formulario.addEventListener("submit", (e) => {
@@ -21,8 +31,6 @@ formulario.addEventListener("submit", (e) => {
     const calcular = new Calculadora(capitalInicial.value, tasaInteres.value, periodo.value);
     const calcularJSON = JSON.stringify(calcular);
     localStorage.setItem("Valores", calcularJSON);
-    // Por el workflow de la app, no resulta necesario recuperar el Json, será limpiada al realizar
-    // un nuevo cálculo o al presionar restablecer.
 
 
     let andaPallaBobo = function() {
