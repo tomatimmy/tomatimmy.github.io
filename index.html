@@ -37,21 +37,25 @@
         <br>
         <label for="periodo">Periodo de inversión (en años):</label>
         <input type="text" list="opciones" id="periodo" name="periodo">
-        <datalist id="opciones">
-          
-        </datalist>
+        <datalist id="opciones"></datalist>
         <br>
         <label for="tasaInteres">Tasa de interés anual:</label>
         <input type="number" id="tasaInteres" name="tasa_interes">
         <br>
         <br>
-        <input class="botones" type="submit" value="Calcular">
-          <br>
+        <input class="botones" type="submit" value="CATcular" id="calcular">
+        <br>
         <input class="botones" type="reset" id="restablecer">
       </form>
+      <br>
+      <button id="verHistorial" class="botonHistorial"><a class='especial' href='#divHistorial'>Ver Historial</a></button>
     </div>
     <div id="resultado" class="resultado"></div>
-    <script src="/JS/maindom.js"></script>
+    <br>
+    <h2 id="tituloHistorial">Historial de Valores ingresados</h2>
+    <div id="divHistorial" class="historial">      
+    </div>
+    <script src="/JS/main.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </main>
   <footer></footer>
